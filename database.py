@@ -46,4 +46,3 @@ def imagepath(username):
         else:
             None
     mydb.close()
-print(checker("akiwyane"))

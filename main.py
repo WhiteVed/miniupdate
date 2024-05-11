@@ -2,6 +2,8 @@ from customtkinter import *
 import threading
 import facemain
 import database
+import os 
+import time
 def gui():
     def filesave():
         a=entryt21.get()
@@ -9,19 +11,37 @@ def gui():
         c=entryt23.get()
         d=entryt24.get()
         e=entryt25.get()
-        database.pusher(a,b,c,d,e)
-        print("push done") 
+        entryt21.delete(0,END)
+        entryt22.delete(0,END)
+        entryt23.delete(0,END)
+        entryt24.delete(0,END)
+        entryt25.delete(0,END)
+        if database.checker(b)==True:
+            label5.configure(text="user exist and cannot be registered")
+            print("not pushed")
+        elif  ".com" not in c or  "@" not in c:
+            label5.configure(text="gmail not in format registered")
+            print("not pushed")
+        elif os.path.exists(d)==False or d.endswith(".jpg")==False:
+            label5.configure(text="path doesnot exist")
+            print("not pushed")
+        elif database.checker(b)!=True:
+            database.pusher(a,b,c,d,e) 
     def locker():
         username=entryt11.get()
         if database.checker(username)==True:
             entryt12.configure(state="normal",placeholder_text="enter the password")
             btn.configure(state="normal")
             label3.configure(text="userfound")
+            facemain.facer=False
+            time.sleep(2)
             facemain.facer=True
             path=database.imagepath(username)
             x2=threading.Thread(target=facemain.facerecon,args=(path,))
             x2.start()
         else:
+            entryt11.delete(0,END)
+            entryt12.delete(0,END)
             entryt12.configure(state="disable",placeholder_text="")
             btn.configure(state="disable",text_color_disabled="yellow")
             label3.configure(text="usernotfound")
@@ -40,11 +60,11 @@ def gui():
            label4.place(relx=0.5,rely=0.5)
         else:
             if counter>=3:  
-                label.configure(text= "Suspicion detected")
+                label2.configure(text= "Suspicion detected")
 
                 print("failure ocuured")
             else:
-                label.configure(text="Suspicion raised")
+                label2.configure(text="Suspicion raised")
                 counter=counter+1
                 print("")
     global counter
@@ -84,8 +104,10 @@ def gui():
     entryt24.pack(pady=20)
     btnt2 = CTkButton(tab2, text="register",fg_color="#C850C0",corner_radius=32, hover_color="#ffffff",command=filesave)
     btnt2.pack(pady=20)
-    label=CTkLabel(tab2,text="enter your details",anchor="center")
-    label.place(relx=0.5,rely=0.8,anchor="center")
+    label5=CTkLabel(tab2,text="Welcome to Register in facey",anchor="center")
+    label5.pack(pady=20)
+    label6=CTkLabel(tab2,text="enter your details",anchor="center")
+    label6.place(relx=0.5,rely=0.8,anchor="center")
     app.mainloop()
 x1=threading.Thread(target=gui)
 

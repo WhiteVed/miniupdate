@@ -33,4 +33,3 @@ def facerecon(path):
                 print("No face Detected")
                 failornot=False
     print("ok done")
-    
