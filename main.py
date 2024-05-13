@@ -55,7 +55,7 @@ def gui():
         password=database.password(username)
         if password==x and facemain.failornot==True and bool(password)==True:
            label2.configure(text="Login was an Success")
-           topview=CTkToplevel(tab1,fg_color="black")
+           topview=CTkToplevel(tab1,fg_color="white")
            label4=CTkLabel(topview,text="Here is the safe data")
            label4.place(relx=0.5,rely=0.5)
         else:
@@ -70,12 +70,12 @@ def gui():
     global counter
     counter=0
     app = CTk()
-    set_appearance_mode("dark")
+    set_appearance_mode("light")
     app.geometry("1920x1080")
     mytab=CTkTabview(master=app,height=700,width=700,)
     mytab.pack(padx=20, pady=20)
     tab1=mytab.add("      Login       ")
-    tab2=mytab.add("      Signup      ")
+    tab2=mytab.add("      Signup    ")
     #tab1 elements
     label2=CTkLabel(tab1,text="",anchor="center")
     label2.pack(pady=20)

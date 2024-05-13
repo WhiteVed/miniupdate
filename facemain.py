@@ -1,15 +1,12 @@
 import cv2
 import  face_recognition
 #import numpy as np  
-import os
 
 def facerecon(path):
     imagepath=str(path)
-    x=[]
     global user_encoding,user_image,failornot, facer
     failornot = False
     facer=True
-    known_face_encoding=[]
     capture =  cv2.VideoCapture(0)
     user_image =face_recognition.load_image_file(imagepath)
     user_encoding = face_recognition.face_encodings(user_image)[0]

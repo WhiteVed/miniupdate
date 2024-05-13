@@ -17,6 +17,7 @@ def checker(username):
     mycursor.execute("SELECT * FROM userbase")
     myresult = mycursor.fetchall()
     for x in myresult:
+        print(x)
         if x[1]==username:
             return True
     return False
@@ -46,3 +47,4 @@ def imagepath(username):
         else:
             None
     mydb.close()
+checker("whiteved")
