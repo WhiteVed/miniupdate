@@ -1,5 +1,6 @@
 import smtplib
-server = smtplib.SMTP("smtp.cock.li",587)
+server =smtplib.SMTP("smtp.gmail.com",587)
 server.starttls()
-server.login("faceysupport@cock.li","facey@123")
-print("done")
+server.login('sfacechecker@gmail.com',"wdrbvzdidynsmrgi")
+server.sendmail("sfacechecker@gmail.com","whiteved@protonmail.com","email is from facesupport")
+print("mailsend")
